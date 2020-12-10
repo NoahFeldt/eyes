@@ -6,16 +6,9 @@ import torch.nn as nn
 import torch
 from pynput.mouse import Controller as mc
 
+from camera import *
+
 mouse = mc()
-
-# imports cascades
-face_cascade = cv2.CascadeClassifier("cascades/haarcascade_frontalface_default.xml")
-eye_cascade = cv2.CascadeClassifier("cascades/haarcascade_eye.xml")
-
-#initialises camera
-cap = cv2.VideoCapture(cv2.CAP_DSHOW)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1280)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
 
 class NN(nn.Module):
     def __init__(self, input_size, num_classes):
@@ -69,12 +62,12 @@ def vid():
                     r = p.max(0).indices
 
                     if r == 0:
-                        mouse.position = (468 * (2/3), 258 * (2/3))
+                        mouse.position = (468, 258)
                     elif r == 1:
-                        mouse.position = (1428 * (2/3), 258 * (2/3))
+                        mouse.position = (1428, 258)
                     elif r == 2:
-                        mouse.position = (468 * (2/3), 798 * (2/3))
+                        mouse.position = (468, 798)
                     elif r == 3:
-                        mouse.position = (1428 * (2/3), 798 * (2/3))
+                        mouse.position = (1428, 798)
 
 vid()

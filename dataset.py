@@ -23,7 +23,7 @@ class EyesDataset(Dataset):
         return sum(self.class_lengths)
 
     def __getitem__(self, index):
-        folder = divmod(index, 1000)
+        folder = divmod(index, 100)
         img_path = os.path.join(self.root_dir, str(folder[0]), str(folder[1]) + ".png")
         image = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
         y_lable = torch.tensor(folder[0])

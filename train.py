@@ -23,7 +23,7 @@ def check_accuracy(loader, model):
             num_correct +=  (predictions == y).sum()
             num_samples += predictions.size(0)
 
-        print(f"{num_correct} / {num_samples} acc: {num_correct / num_samples}")
+        print(f"{num_correct} / {num_samples} acc: {float(num_correct) / float(num_samples)}")
 
 class NN(nn.Module):
     def __init__(self, input_size, num_classes):
@@ -39,6 +39,7 @@ class NN(nn.Module):
         return x
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(device)
 
 input_size = 100 ** 2
 num_classes = 4
@@ -47,7 +48,7 @@ batch_size = 64
 num_epochs = 5
 
 eyes = EyesDataset("img", transforms.ToTensor())
-train_set, test_set = torch.utils.data.random_split(eyes, [3900, 100])
+train_set, test_set = torch.utils.data.random_split(eyes, [390, 10])
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True)
 
